@@ -1,3 +1,7 @@
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -8,13 +12,25 @@ import { MyApp } from './app.component';
 import { AuthProvider } from '../providers/auth/auth';
 import { ContactProvider } from '../providers/contact/contact';
 
+export const firebaseConfig = {
+  apiKey: "AIzaSyAlCtS9ypI60bHhyaDi2BKXHI0Ub6ec_aw",
+  authDomain: "crud-app-d243b.firebaseapp.com",
+  databaseURL: "https://crud-app-d243b.firebaseio.com",
+  projectId: "crud-app-d243b",
+  storageBucket: "",
+  messagingSenderId: "445219962008"
+}
+
 @NgModule({
   declarations: [
     MyApp,
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
